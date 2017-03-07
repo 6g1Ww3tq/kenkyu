@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Text>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#doOpenFolder" text="Open Folder" />
+                        <MenuItem mnemonicParsing="false" onAction="#doOpenFile" text="Open File" />
+                    <MenuItem mnemonicParsing="false" onAction="#doClose" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#doAbout" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </MenuBar>
+            <HBox spacing="10.0">
+               <children>
+                  <TextField promptText="search" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#doAnalyze" text="analyze">
+                     <HBox.margin>
+                        <Insets left="70.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSetting" text="Setting" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <TreeView fx:id="treeview" editable="true" showRoot="false" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <TextArea BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
