@@ -9,11 +9,14 @@ import java.util.List;
 import close.CloseWindow;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -24,18 +27,43 @@ import tree.TreeViewController;
 
 public class MainController extends Application {
 	private static final int READ_ERROR = -1;
+	@FXML Text statuText;
 
 	private static TreeViewController controller;
 
+	@FXML
+	public void doActive(MouseEvent event) {
+		Object obj = event.getSource();
+		String str = obj.toString();
+		int index = str.indexOf("[");
+		String msg = str.substring(0, index);
+		switch (msg) {
+		case "TextField":
+			msg = "search in treeview";
+			break;
+		case "TextArea":
+			msg = "input";
+			break;
+		case "TreeView":
+			msg = "view";
+		default:
+			break;
+		}
+		statuText.setText(msg);
+	}
+
+	@FXML
 	public void doAnalyze(ActionEvent event) {
 		System.out.println("analyze..");
 	}
 
+	@FXML
 	public String doSetting(ActionEvent event){
 		System.out.println("setting..");
 		return "hoge";
 	}
 
+	@FXML
 	public void doOpenFolder(ActionEvent event){
 		DirectoryChooser dirChooser = new DirectoryChooser();
 		dirChooser.setTitle("Open Resource Directory");
@@ -46,6 +74,7 @@ public class MainController extends Application {
 		}
 	}
 
+	@FXML
 	public void doOpenFile(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
 
@@ -79,11 +108,13 @@ public class MainController extends Application {
 		}
 	}
 
+	@FXML
 	public void doClose(ActionEvent event){
 		CloseWindow closeDialog = new CloseWindow(this,"Exit?");
 		closeDialog.display();
 	}
 
+	@FXML
 	public void doAbout(ActionEvent event){
 		VersionController vController = new VersionController();
 		vController.display();

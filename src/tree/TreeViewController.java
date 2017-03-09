@@ -2,9 +2,11 @@ package tree;
 
 import java.io.File;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class TreeViewController {
@@ -30,8 +32,7 @@ public class TreeViewController {
 //			node1.getChildren().add(new TreeItem<>(new TreeItemData("File1"+i)));
 //		}
 //		//TreeItemのルートをTreeViewに設定する
-//		treeview.setRoot(rootNode);
-		
+
 		TreeLogic tl = new TreeLogic(file.getPath());
 		tl.makeTreeView(tl.getRootNode(),tl.getRoot());
 		treeview.setRoot(tl.getRootNode());

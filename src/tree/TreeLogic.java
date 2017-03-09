@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.input.MouseEvent;
 
 public class TreeLogic {
 	TreeItemData root;
@@ -48,17 +48,18 @@ public class TreeLogic {
 		return node;
 	}
 
-	public void makeTreeView(TreeItem<TreeItemData> tree,TreeItemData node){
+	public TreeItem<TreeItemData> makeTreeView(TreeItem<TreeItemData> tree,TreeItemData node){
 		if (node instanceof Directory) {
-			tree.getChildren().add(new TreeItem<>(new TreeItemData(node.getName(), TreeItemData.Type.FOLDER)));
+			TreeItem<TreeItemData> dir = new TreeItem<>(new TreeItemData(node.getName(), TreeItemData.Type.FOLDER));
+			tree.getChildren().add(dir);
 			List<TreeItemData> children = ((Directory) node).getChildren();
 			for (int i = 0; i < children.size(); i++) {
 				TreeItemData child = children.get(i);
-				makeTreeView(tree,child);
+				dir.getChildren().add(makeTreeView(tree,child));
 			}
+			return dir;
 		}else{
-			tree.getChildren().add(new TreeItem<>(new TreeItemData(node.getName(), TreeItemData.Type.ITEM)));
+			return new TreeItem<>(new TreeItemData(node.getName(), TreeItemData.Type.ITEM));
 		}
 	}
-
 }

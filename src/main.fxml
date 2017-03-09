@@ -10,7 +10,7 @@
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <Text fx:id="statuText" strokeType="OUTSIDE" strokeWidth="0.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -45,14 +45,14 @@
             </MenuBar>
             <HBox spacing="10.0">
                <children>
-                  <TextField promptText="search" />
+                  <TextField onMouseClicked="#doActive" promptText="search" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#doAnalyze" text="analyze">
+                  <Button mnemonicParsing="false" onAction="#doAnalyze" onMouseClicked="#doActive" text="analyze">
                      <HBox.margin>
                         <Insets left="70.0" />
                      </HBox.margin>
                   </Button>
-                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSetting" text="Setting" />
+                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSetting" onMouseClicked="#doActive" text="Setting" />
                </children>
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -62,9 +62,9 @@
       </VBox>
    </top>
    <left>
-      <TreeView fx:id="treeview" editable="true" showRoot="false" BorderPane.alignment="CENTER" />
+      <TreeView fx:id="treeview" editable="true" onMouseClicked="#doActive" showRoot="false" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <TextArea BorderPane.alignment="CENTER" />
+      <TextArea onMouseClicked="#doActive" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

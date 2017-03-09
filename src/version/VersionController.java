@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class VersionController{
 	Stage primaryStage;
@@ -16,11 +17,10 @@ public class VersionController{
 
 	public VersionController() {
 		// TODO Auto-generated constructor stub
-		this.primaryStage = new Stage();
-		primaryStage.setResizable(false);
+		primaryStage = new Stage(StageStyle.UTILITY);
 		primaryStage.setTitle("Version");
-		setSize(150,300);
 		primaryStage.initModality(Modality.APPLICATION_MODAL);
+		setSize(150,300);
 	}
 
 	private void setSize(double height,double width) {
@@ -43,7 +43,7 @@ public class VersionController{
 			root = FXMLLoader.load(getClass().getResource("/version.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
-			primaryStage.show();
+			primaryStage.showAndWait();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

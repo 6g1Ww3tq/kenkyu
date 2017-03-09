@@ -1,8 +1,10 @@
 package tree;
 
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TreeCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class TreeCellImpl extends TreeCell<TreeItemData> {
 	private static final Image FolderImage = createImage("folder.gif");
@@ -27,6 +29,10 @@ public class TreeCellImpl extends TreeCell<TreeItemData> {
 		//編集時はLabeledTextにラベルを表示させない
 		setText(null);
 		setGraphic(this.graph);
+		//イベントハンドラ
+		setContextMenu(new ContextMenu());
+		getContextMenu().addEventFilter(MouseEvent.MOUSE_CLICKED, new TreeItemClickEvent());
+		addEventHandler(MouseEvent.MOUSE_CLICKED, new TreeItemClickEvent());
 	}
 
 	@Override

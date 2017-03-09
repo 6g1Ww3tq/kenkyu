@@ -24,7 +24,7 @@ public class CloseWindow extends MyDialog{
 			primaryStage.setScene(scene);
 			primaryStage.setMinHeight(100);
 			primaryStage.setMinWidth(200);
-			primaryStage.show();
+			primaryStage.showAndWait();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
