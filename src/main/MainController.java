@@ -29,6 +29,7 @@ import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import tree.TreeLogic;
@@ -156,13 +157,16 @@ public class MainController implements Initializable{
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource(loc));
 			Stage stage = new Stage(StageStyle.DECORATED);
+			stage.initOwner(rootPane.getScene().getWindow());
+			stage.initModality(Modality.WINDOW_MODAL);
 			stage.setTitle(title);
 			stage.setScene(new Scene(parent));
+//			stage.setResizable(false);
 			stage.setMinHeight(height);
 			stage.setMaxHeight(height);
 			stage.setMaxWidth(width);
 			stage.setMinWidth(width);
-			stage.show();
+			stage.showAndWait();
 		}catch (IOException ex) {
 			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
 		}
