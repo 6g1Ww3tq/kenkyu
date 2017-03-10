@@ -4,31 +4,38 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import close.CloseWindow;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeView;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import version.VersionController;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import tree.TreeItemData;
 import tree.TreeViewController;
 
-public class MainController extends Application {
-	private static final int READ_ERROR = -1;
+public class MainController implements Initializable{
 	@FXML Text statuText;
+	@FXML TreeView<TreeItemData> treeview;
+	@FXML BorderPane rootPane;
+	@FXML TextArea textarea;
 
+	private static final int READ_ERROR = -1;
 	private static TreeViewController controller;
 
 	@FXML
@@ -88,63 +95,75 @@ public class MainController extends Application {
 
 
 		if (list != null) {
-			try {
-				int data;
-				FileReader fr = null;
-				for (File file : list) {
-					fr = new FileReader(file);
-					while ((data = fr.read()) != READ_ERROR) {
-						System.out.print((char)data);
-					}
-					fr.close();
-				}
-			} catch (FileNotFoundException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO: handle exception
-				e.printStackTrace();
+			for (File file : list) {
+				setTextArea(file);
 			}
+		}
+	}
+
+	private void setTextArea(File file) {
+		FileReader fr = null;
+		StringBuilder sb = new StringBuilder();
+		int data = READ_ERROR;
+		try {
+			if (file.isFile()) {
+				fr = new FileReader(file);
+				while ((data = fr.read()) != READ_ERROR) {
+					sb.append((char)data);
+				}
+				textarea.setText(sb.toString());
+				fr.close();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	public void doClose(ActionEvent event){
-		CloseWindow closeDialog = new CloseWindow(this,"Exit?");
-		closeDialog.display();
+		loadDialogWindow("/closeDialog.fxml", "Exit ?", 100, 200);
 	}
 
 	@FXML
 	public void doAbout(ActionEvent event){
-		VersionController vController = new VersionController();
-		vController.display();
+		loadDialogWindow("/version.fxml", "Version", 150, 300);
 	}
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		try{
-			final Image img16 = new Image(getClass().getResourceAsStream("treeviewsample16.jpg"));
-			final Image img32 = new Image(getClass().getResourceAsStream("treeviewsample32.jpg"));
-
-			Pane root = (Pane)FXMLLoader.load(getClass().getResource("/main.fxml"));
-			Scene scene = new Scene(root);
-			controller = new TreeViewController((TreeView<TreeItemData>) root.lookup("#treeview"));
-			primaryStage.setTitle("MainWindow");
-			primaryStage.setScene(scene);
-			primaryStage.getIcons().addAll(img16,img32);
-			primaryStage.setMinHeight(400);
-			primaryStage.setMinWidth(600);
-			primaryStage.show();
-		}catch (Exception e) {
-			// TODO: handle exception
-			throw new RuntimeException(e);
+	private void loadWindow(String loc,String title) {
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource(loc));
+			Stage stage = new Stage(StageStyle.DECORATED);
+			stage.setTitle(title);
+			stage.setScene(new Scene(parent));
+			stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		launch(args);
+	private void loadDialogWindow(String loc,String title,double height,double width) {
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource(loc));
+			Stage stage = new Stage(StageStyle.DECORATED);
+			stage.setTitle(title);
+			stage.setScene(new Scene(parent));
+			stage.setMinHeight(height);
+			stage.setMaxHeight(height);
+			stage.setMaxWidth(width);
+			stage.setMinWidth(width);
+			stage.show();
+		}catch (IOException ex) {
+			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+			controller = new TreeViewController(treeview);
 	}
 
 }

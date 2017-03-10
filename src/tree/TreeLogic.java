@@ -49,6 +49,7 @@ public class TreeLogic {
 	}
 
 	public TreeItem<TreeItemData> makeTreeView(TreeItem<TreeItemData> tree,TreeItemData node){
+
 		if (node instanceof Directory) {
 			TreeItem<TreeItemData> dir = new TreeItem<>(new TreeItemData(node.getName(), TreeItemData.Type.FOLDER));
 			tree.getChildren().add(dir);

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+<BorderPane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -24,7 +26,7 @@
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <MenuBar>
+            <MenuBar cacheHint="SPEED">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
@@ -42,6 +44,12 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </MenuBar>
             <HBox spacing="10.0">
                <children>
@@ -51,8 +59,14 @@
                      <HBox.margin>
                         <Insets left="70.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
                   </Button>
-                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSetting" onMouseClicked="#doActive" text="Setting" />
+                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSetting" onMouseClicked="#doActive" text="Setting">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor></Button>
                </children>
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -62,9 +76,12 @@
       </VBox>
    </top>
    <left>
-      <TreeView fx:id="treeview" editable="true" onMouseClicked="#doActive" showRoot="false" BorderPane.alignment="CENTER" />
+      <TreeView fx:id="treeview" editable="true" onMouseClicked="#doActive" showRoot="false" BorderPane.alignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></TreeView>
    </left>
    <center>
-      <TextArea onMouseClicked="#doActive" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textarea" onMouseClicked="#doActive" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
