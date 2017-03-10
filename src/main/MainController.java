@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.FileVisitor;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -26,17 +31,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import tree.TreeItemData;
-import tree.TreeViewController;
+import tree.TreeLogic;
 
 public class MainController implements Initializable{
 	@FXML Text statuText;
-	@FXML TreeView<TreeItemData> treeview;
+	@FXML TreeView<String> treeview;
 	@FXML BorderPane rootPane;
 	@FXML TextArea textarea;
 
 	private static final int READ_ERROR = -1;
-	private static TreeViewController controller;
 
 	@FXML
 	public void doActive(MouseEvent event) {
@@ -74,11 +77,15 @@ public class MainController implements Initializable{
 	public void doOpenFolder(ActionEvent event){
 		DirectoryChooser dirChooser = new DirectoryChooser();
 		dirChooser.setTitle("Open Resource Directory");
+		TreeLogic tl = null;
 
 		File openFile = dirChooser.showDialog(new Stage());
 		if (openFile!=null) {
-			controller.makeFolderTree(openFile);
+			tl = new TreeLogic();
+			tl.makeTree(tl.getRoot(), openFile);
+			treeview.setRoot(tl.getRoot());
 		}
+
 	}
 
 	@FXML
@@ -163,7 +170,5 @@ public class MainController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-			controller = new TreeViewController(treeview);
 	}
-
 }

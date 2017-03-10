@@ -1,66 +1,44 @@
 package tree;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import javafx.scene.control.TreeItem;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class TreeLogic {
-	TreeItemData root;
-	TreeItem<TreeItemData> rootNode;
+	private Image FOLDER = new Image(getClass().getResourceAsStream("../icons/folder.gif"));
+	private Image FILE = new Image(getClass().getResourceAsStream("../icons/file.gif"));
+	private TreeItem<String> root;
 
-	public TreeLogic(String path) {
+	public TreeLogic() {
 		// TODO 自動生成されたコンストラクター・スタブ
-		root = getNode(new File(path));
-		rootNode = new TreeItem<>(new TreeItemData("Root", TreeItemData.Type.FOLDER));
-		rootNode.setExpanded(true);
+		root = new TreeItem<>("Root",new ImageView(FOLDER));
 	}
 
+	public TreeItem<String> makeTree(TreeItem<String> rootNode,File currentFile){
+		TreeItem<String> node = null;
+		File[] files = null;
 
-	public TreeItem<TreeItemData> getRootNode() {
-		return rootNode;
-	}
+		files = currentFile.listFiles();
 
-	public TreeItemData getRoot() {
-		return root;
-	}
-
-	public TreeItemData getNode(File rootFile){
-		TreeItemData node = null;
-
-		if (rootFile.isDirectory()) {
-			Directory dir = new Directory(rootFile.getName());
-
-			List<TreeItemData> children = new ArrayList<>();
-			File[] childFiles = rootFile.listFiles();
-			for (File child : childFiles) {
-				children.add(getNode(child));
+		for (File file : files) {
+			if (file.isDirectory()) {
+				node = new TreeItem<String>(file.getName(),new ImageView(FOLDER));
+				node.getChildren().add(makeTree(node,file));
+			}else{
+				node = new TreeItem<String>(file.getName(),new ImageView(FILE));
 			}
-			dir.setChildren(children);
-
-			node = dir;
-		} else {
-			node = new MyFile(rootFile.getName());
+			rootNode.getChildren().add(node);
 		}
 
+		if (files!=null) {
+			node = null;
+		}
 		return node;
 	}
 
-	public TreeItem<TreeItemData> makeTreeView(TreeItem<TreeItemData> tree,TreeItemData node){
-
-		if (node instanceof Directory) {
-			TreeItem<TreeItemData> dir = new TreeItem<>(new TreeItemData(node.getName(), TreeItemData.Type.FOLDER));
-			tree.getChildren().add(dir);
-			List<TreeItemData> children = ((Directory) node).getChildren();
-			for (int i = 0; i < children.size(); i++) {
-				TreeItemData child = children.get(i);
-				dir.getChildren().add(makeTreeView(tree,child));
-			}
-			return dir;
-		}else{
-			return new TreeItem<>(new TreeItemData(node.getName(), TreeItemData.Type.ITEM));
-		}
+	public TreeItem<String> getRoot() {
+		return root;
 	}
 }
