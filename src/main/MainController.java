@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -23,13 +24,14 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import textarea.TextAreaInputer;
-import textarea.TextAreaInputer.SETTYPE;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import tree.TreeLogic;
+import type.SETTYPE;
 
 public class MainController implements Initializable{
+	private static final int DOUBLE_CLICK = 2;
 	@FXML Text statuText;
 	@FXML TreeView<String> treeview;
 	@FXML BorderPane rootPane;
@@ -37,7 +39,7 @@ public class MainController implements Initializable{
 
 
 	@FXML
-	public void doActive(MouseEvent event) {
+	public void doActivePane(MouseEvent event) {
 		Object obj = event.getSource();
 		String str = obj.toString();
 		int index = str.indexOf("[");
@@ -103,9 +105,21 @@ public class MainController implements Initializable{
 		}
 	}
 
+	@FXML
+	public void pressedTreeItem(MouseEvent event){
+		if (event.getClickCount()==DOUBLE_CLICK) {
+			String path = null;
+			TreeItem<String> treeItem = treeview.getSelectionModel().getSelectedItem();
+			path = treeItem.toString();
+			setTextArea(new File(path));
+		}
+	}
+
 	private void setTextArea(File file) {
-		TextAreaInputer tai = new TextAreaInputer(textarea);
-		tai.setText(file, SETTYPE.FILE);
+		if (file.isFile()) {
+			TextAreaInputer tai = new TextAreaInputer(textarea);
+			tai.setText(file, SETTYPE.FILE);
+		}
 	}
 
 	@FXML
@@ -138,7 +152,7 @@ public class MainController implements Initializable{
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.setTitle(title);
 			stage.setScene(new Scene(parent));
-//			stage.setResizable(false);
+			//stage.setResizable(false);
 			stage.setMinHeight(height);
 			stage.setMaxHeight(height);
 			stage.setMaxWidth(width);

@@ -53,9 +53,9 @@
             </MenuBar>
             <HBox spacing="10.0">
                <children>
-                  <TextField onMouseClicked="#doActive" promptText="search" />
+                  <TextField onMouseClicked="#doActivePane" promptText="search" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#doAnalyze" onMouseClicked="#doActive" text="analyze">
+                  <Button mnemonicParsing="false" onAction="#doAnalyze" onMouseClicked="#doActivePane" text="analyze">
                      <HBox.margin>
                         <Insets left="70.0" />
                      </HBox.margin>
@@ -63,7 +63,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSetting" onMouseClicked="#doActive" text="Setting">
+                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSetting" onMouseClicked="#doActivePane" text="Setting">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor></Button>
@@ -76,12 +76,9 @@
       </VBox>
    </top>
    <left>
-      <TreeView fx:id="treeview" editable="true" onMouseClicked="#doActive" showRoot="false" BorderPane.alignment="CENTER">
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor></TreeView>
+      <TreeView fx:id="treeview" editable="true" onMouseClicked="#doActivePane" onMousePressed="#pressedTreeItem" showRoot="false" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <TextArea fx:id="textarea" onMouseClicked="#doActive" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textarea" onMouseClicked="#doActivePane" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

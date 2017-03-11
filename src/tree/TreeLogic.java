@@ -2,24 +2,19 @@ package tree;
 
 import java.io.File;
 
-import javafx.scene.control.TreeItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+//import javafx.scene.input.MouseEvent;
+import type.SETTYPE;
 
 public class TreeLogic {
-	private Image FOLDER = new Image(getClass().getResourceAsStream("../icons/folder.gif"));
-	private Image FILE = new Image(getClass().getResourceAsStream("../icons/file.gif"));
-	private TreeItem<String> root;
+	private TreeItemString root;
 
 	public TreeLogic() {
-		// TODO 自動生成されたコンストラクター・スタブ
-		root = new TreeItem<>("Root",new ImageView(FOLDER));
+		root = new TreeItemString("Root",SETTYPE.FOLDER);
 		root.setExpanded(true);
 	}
 
-	public TreeItem<String> makeTree(TreeItem<String> rootNode,File currentFile){
-		TreeItem<String> node = null;
+	public TreeItemString makeTree(TreeItemString rootNode,File currentFile){
+		TreeItemString node = null;
 		File[] files = null;
 
 		rootNode.setExpanded(true);
@@ -28,11 +23,13 @@ public class TreeLogic {
 
 		for (File file : files) {
 			if (file.isDirectory()) {
-				node = new TreeItem<String>(file.getName(),new ImageView(FOLDER));
+				node = new TreeItemString(file.getName(),SETTYPE.FOLDER);
+				node.setFile(file);
 				node.getChildren().add(makeTree(node,file));
 			}else{
-				node = new TreeItem<String>(file.getName(),new ImageView(FILE));
-				node.addEventHandler(MouseEvent.MOUSE_PRESSED,new TreeItemMouseEvent());
+				node = new TreeItemString(file.getName(),SETTYPE.FILE);
+				node.setFile(file);
+//				node.addEventHandler(MouseEvent.MOUSE_PRESSED,new TreeItemMouseEvent());
 			}
 			rootNode.getChildren().add(node);
 		}
@@ -43,7 +40,7 @@ public class TreeLogic {
 		return node;
 	}
 
-	public TreeItem<String> getRoot() {
+	public TreeItemString getRoot() {
 		return root;
 	}
 }

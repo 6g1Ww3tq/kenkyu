@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import javafx.scene.control.TextArea;
+import type.SETTYPE;
 
 public class TextAreaInputer {
 	private  final int READ_ERROR = -1;
@@ -37,9 +38,5 @@ public class TextAreaInputer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public enum SETTYPE{
-		FILE,FOLDER;
 	}
 }
