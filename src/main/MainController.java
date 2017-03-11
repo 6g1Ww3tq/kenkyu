@@ -1,15 +1,8 @@
 package main;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.FileVisitor;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -29,6 +22,8 @@ import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import textarea.TextAreaInputer;
+import textarea.TextAreaInputer.SETTYPE;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,7 +35,6 @@ public class MainController implements Initializable{
 	@FXML BorderPane rootPane;
 	@FXML TextArea textarea;
 
-	private static final int READ_ERROR = -1;
 
 	@FXML
 	public void doActive(MouseEvent event) {
@@ -110,25 +104,8 @@ public class MainController implements Initializable{
 	}
 
 	private void setTextArea(File file) {
-		FileReader fr = null;
-		StringBuilder sb = new StringBuilder();
-		int data = READ_ERROR;
-		try {
-			if (file.isFile()) {
-				fr = new FileReader(file);
-				while ((data = fr.read()) != READ_ERROR) {
-					sb.append((char)data);
-				}
-				textarea.setText(sb.toString());
-				fr.close();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		TextAreaInputer tai = new TextAreaInputer(textarea);
+		tai.setText(file, SETTYPE.FILE);
 	}
 
 	@FXML

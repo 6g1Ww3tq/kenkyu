@@ -5,6 +5,7 @@ import java.io.File;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class TreeLogic {
 	private Image FOLDER = new Image(getClass().getResourceAsStream("../icons/folder.gif"));
@@ -14,11 +15,14 @@ public class TreeLogic {
 	public TreeLogic() {
 		// TODO 自動生成されたコンストラクター・スタブ
 		root = new TreeItem<>("Root",new ImageView(FOLDER));
+		root.setExpanded(true);
 	}
 
 	public TreeItem<String> makeTree(TreeItem<String> rootNode,File currentFile){
 		TreeItem<String> node = null;
 		File[] files = null;
+
+		rootNode.setExpanded(true);
 
 		files = currentFile.listFiles();
 
@@ -28,6 +32,7 @@ public class TreeLogic {
 				node.getChildren().add(makeTree(node,file));
 			}else{
 				node = new TreeItem<String>(file.getName(),new ImageView(FILE));
+				node.addEventHandler(MouseEvent.MOUSE_PRESSED,new TreeItemMouseEvent());
 			}
 			rootNode.getChildren().add(node);
 		}
