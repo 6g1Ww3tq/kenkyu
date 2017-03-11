@@ -53,7 +53,7 @@
             </MenuBar>
             <HBox spacing="10.0">
                <children>
-                  <TextField onMouseClicked="#doActivePane" promptText="search" />
+                  <TextField fx:id="searchField" onMouseClicked="#doActivePane" promptText="search" />
                   <Region HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#doAnalyze" onMouseClicked="#doActivePane" text="analyze">
                      <HBox.margin>

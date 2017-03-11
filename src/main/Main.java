@@ -11,10 +11,9 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		try{
-			Image img16 = new Image(getClass().getResourceAsStream("treeviewsample16.jpg"));
-			Image img32 = new Image(getClass().getResourceAsStream("treeviewsample32.jpg"));
+			Image img16 = new Image(getClass().getResourceAsStream("title_16.png"));
+			Image img32 = new Image(getClass().getResourceAsStream("title_32.png"));
 			Pane root = (Pane)FXMLLoader.load(getClass().getResource("/main.fxml"));
 			Scene scene = new Scene(root);
 
@@ -25,7 +24,6 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		}catch (Exception e) {
-			// TODO: handle exception
 			throw new RuntimeException(e);
 		}
 	}

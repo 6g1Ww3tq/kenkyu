@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
@@ -36,6 +37,7 @@ public class MainController implements Initializable{
 	@FXML TreeView<String> treeview;
 	@FXML BorderPane rootPane;
 	@FXML TextArea textarea;
+	@FXML TextField searchField;
 
 
 	@FXML
