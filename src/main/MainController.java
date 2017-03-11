@@ -113,7 +113,9 @@ public class MainController implements Initializable{
 			String path = null;
 			TreeItem<String> treeItem = treeview.getSelectionModel().getSelectedItem();
 			path = treeItem.toString();
-			setTextArea(new File(path));
+			if (path!=null) {
+				setTextArea(new File(path));
+			}
 		}
 	}
 
@@ -151,7 +153,7 @@ public class MainController implements Initializable{
 			Parent parent = FXMLLoader.load(getClass().getResource(loc));
 			Stage stage = new Stage(StageStyle.DECORATED);
 			stage.initOwner(rootPane.getScene().getWindow());
-			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle(title);
 			stage.setScene(new Scene(parent));
 			//stage.setResizable(false);

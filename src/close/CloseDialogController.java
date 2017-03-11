@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class CloseDialogController {
@@ -15,6 +14,7 @@ public class CloseDialogController {
 	public void exit(ActionEvent event){
 		if (event.getSource() == yesButton) {
 			Platform.exit();
+			System.exit(1);
 		}else{
 			Stage stage = (Stage) noButton.getScene().getWindow();
 			stage.close();
