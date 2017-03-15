@@ -32,11 +32,16 @@ public class TextAreaInputer {
 				sb.append((char)data);
 			}
 			ta.setText(sb.toString());
-			fr.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				fr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

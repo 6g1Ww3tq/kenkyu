@@ -33,12 +33,13 @@ import type.SETTYPE;
 
 public class MainController implements Initializable{
 	private static final int DOUBLE_CLICK = 2;
+	private static String folderFormat;
+
 	@FXML Text statuText;
 	@FXML TreeView<String> treeview;
 	@FXML BorderPane rootPane;
 	@FXML TextArea textarea;
 	@FXML TextField searchField;
-
 
 	@FXML
 	public void doActivePane(MouseEvent event) {
@@ -72,6 +73,10 @@ public class MainController implements Initializable{
 		return "hoge";
 	}
 
+	public static void setFolderFormat(String folderFormat) {
+		MainController.folderFormat = folderFormat;
+	}
+
 	@FXML
 	public void doOpenFolder(ActionEvent event){
 		DirectoryChooser dirChooser = new DirectoryChooser();
@@ -80,7 +85,8 @@ public class MainController implements Initializable{
 
 		File openFile = dirChooser.showDialog(new Stage());
 		if (openFile!=null) {
-			tl = new TreeLogic();
+			loadDialogWindow("/fileformat.fxml", "Choose File Format", 150, 300);
+			tl = new TreeLogic(folderFormat);
 			tl.makeTree(tl.getRoot(), openFile);
 			treeview.setRoot(tl.getRoot());
 		}
@@ -169,5 +175,6 @@ public class MainController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		setFolderFormat("*");
 	}
 }

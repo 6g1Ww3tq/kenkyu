@@ -7,14 +7,21 @@ import type.SETTYPE;
 
 public class TreeLogic {
 	private TreeItemString root;
+	private String regex;
 
-	public TreeLogic() {
+	public TreeLogic(String format) {
 		root = new TreeItemString("Root",SETTYPE.FOLDER);
 		root.setExpanded(true);
+		if (format.equals("*")) {
+			format = ".*";
+		}else{
+			format = ".*" + format;
+		}
+		this.regex = format;
 	}
 
 	public TreeItemString makeTree(TreeItemString rootNode,File currentFile){
-		TreeItemString node = null;
+		TreeItemString node = null;;
 		File[] files = null;
 
 		rootNode.setExpanded(true);
@@ -27,11 +34,17 @@ public class TreeLogic {
 				node.setFile(file);
 				node.getChildren().add(makeTree(node,file));
 			}else{
-				node = new TreeItemString(file.getName(),SETTYPE.FILE);
-				node.setFile(file);
-//				node.addEventHandler(MouseEvent.MOUSE_PRESSED,new TreeItemMouseEvent());
+				if (file.getName().matches(regex)) {
+					node = new TreeItemString(file.getName(),SETTYPE.FILE);
+					node.setFile(file);
+				}
 			}
-			rootNode.getChildren().add(node);
+
+			if (node!=null) {
+				rootNode.getChildren().add(node);
+			}
+
+			node = null;
 		}
 
 		if (files!=null) {

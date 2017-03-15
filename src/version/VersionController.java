@@ -32,7 +32,6 @@ public class VersionController{
 
 	@FXML
 	public void doOK() {
-		// TODO Auto-generated method stub
 		Stage stage = (Stage) okButton.getScene().getWindow();
 		stage.close();
 	}

@@ -79,6 +79,6 @@
       <TreeView fx:id="treeview" editable="true" onMouseClicked="#doActivePane" onMousePressed="#pressedTreeItem" showRoot="false" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <TextArea fx:id="textarea" onMouseClicked="#doActivePane" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textarea" onMouseClicked="#doActivePane" prefHeight="171.0" prefWidth="352.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
