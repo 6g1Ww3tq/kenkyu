@@ -11,6 +11,7 @@ import type.SETTYPE;
 public class TextAreaInputer {
 	private  final int READ_ERROR = -1;
 	private  TextArea ta;
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(TextAreaInputer.class.getName());
 
 	public TextAreaInputer(TextArea ta) {
 		this.ta = ta;
@@ -27,6 +28,7 @@ public class TextAreaInputer {
 		try {
 			if (type == SETTYPE.FILE) {
 				fr = new FileReader(file);
+				logger.info("setText " + file.getName());
 			}
 			while ((data = fr.read()) != READ_ERROR) {
 				sb.append((char)data);

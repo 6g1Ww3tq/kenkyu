@@ -2,18 +2,22 @@ package main;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import alertWindow.alertWindowController;
+import analyze.reflect.ClassPathModifier;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
@@ -34,6 +38,8 @@ import type.SETTYPE;
 public class MainController implements Initializable{
 	private static final int DOUBLE_CLICK = 2;
 	private static String folderFormat;
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MainController.class.getName());
+	private static ClassLoader classLoader = MainController.class.getClassLoader();
 
 	@FXML Text statuText;
 	@FXML TreeView<String> treeview;
@@ -41,9 +47,16 @@ public class MainController implements Initializable{
 	@FXML TextArea textarea;
 	@FXML TextField searchField;
 
+	private String fileName;
+	private static File openFile;
+
 	@FXML
 	public void doActivePane(MouseEvent event) {
 		Object obj = event.getSource();
+		if (obj instanceof Button) {
+			return ;
+		}
+
 		String str = obj.toString();
 		int index = str.indexOf("[");
 		String msg = str.substring(0, index);
@@ -52,7 +65,7 @@ public class MainController implements Initializable{
 			msg = "search in treeview";
 			break;
 		case "TextArea":
-			msg = "input";
+			msg = fileName;
 			break;
 		case "TreeView":
 			msg = "view";
@@ -64,13 +77,26 @@ public class MainController implements Initializable{
 
 	@FXML
 	public void doAnalyze(ActionEvent event) {
-		System.out.println("analyze..");
+		try {
+			ClassPathModifier.addClassPath(classLoader, openFile);
+			Class<?> clazz = null;
+			String fqcn = null;
+
+			fqcn = searchField.getText();
+			clazz = classLoader.loadClass(fqcn);
+
+			Method methods[] = clazz.getDeclaredMethods();
+			for (Method method : methods) {
+				System.out.println(method);
+			}
+		} catch (IOException | ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
+			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", e);
+		}
 	}
 
 	@FXML
-	public String doSetting(ActionEvent event){
+	public void doSetting(ActionEvent event){
 		System.out.println("setting..");
-		return "hoge";
 	}
 
 	public static void setFolderFormat(String folderFormat) {
@@ -83,9 +109,10 @@ public class MainController implements Initializable{
 		dirChooser.setTitle("Open Resource Directory");
 		TreeLogic tl = null;
 
-		File openFile = dirChooser.showDialog(new Stage());
+		openFile = dirChooser.showDialog(new Stage());
 		if (openFile!=null) {
-			loadDialogWindow("/fileformat.fxml", "Choose File Format", 150, 300);
+			logger.info("Start OpenFolder");
+			loadDialogWindow("/format/fileformat.fxml", "Choose File Format", 150, 300);
 			tl = new TreeLogic(folderFormat);
 			tl.makeTree(tl.getRoot(), openFile);
 			treeview.setRoot(tl.getRoot());
@@ -103,13 +130,18 @@ public class MainController implements Initializable{
 				,new ExtensionFilter("Fxml Files (*.fxml)","*.fxml"));
 		fileChooser.setTitle("Open Resource File");
 
-		List<File> list = fileChooser.showOpenMultipleDialog(new Stage());
+		//List<File> list = fileChooser.showOpenMultipleDialog(new Stage());
+		//if (list != null) {
+		//logger.info("Start OpenFile");
+		//for (File file : list) {
+		//setTextArea(file);
+		//}
+		//}
 
-
-		if (list != null) {
-			for (File file : list) {
-				setTextArea(file);
-			}
+		openFile = fileChooser.showOpenDialog(new Stage());
+		if (openFile != null) {
+			logger.info("Start OpenFile");
+			setTextArea(openFile);
 		}
 	}
 
@@ -127,6 +159,7 @@ public class MainController implements Initializable{
 
 	private void setTextArea(File file) {
 		if (file.isFile()) {
+			fileName = file.getName();
 			TextAreaInputer tai = new TextAreaInputer(textarea);
 			tai.setText(file, SETTYPE.FILE);
 		}
@@ -134,19 +167,20 @@ public class MainController implements Initializable{
 
 	@FXML
 	public void doClose(ActionEvent event){
-		loadDialogWindow("/closeDialog.fxml", "Exit ?", 100, 200);
+		loadDialogWindow("/close/closeDialog.fxml", "Exit ?", 100, 200);
 	}
 
 	@FXML
 	public void doAbout(ActionEvent event){
-		loadDialogWindow("/version.fxml", "Version", 150, 300);
+		loadDialogWindow("/version/version.fxml", "Version", 150, 300);
 	}
 
-	private void loadWindow(String loc,String title) {
+	private void loadAlertWindow(String locFXML,String windowTitle,Exception exception) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource(loc));
+			alertWindowController.setException(exception);
+			Parent parent = FXMLLoader.load(getClass().getResource(locFXML));
 			Stage stage = new Stage(StageStyle.DECORATED);
-			stage.setTitle(title);
+			stage.setTitle(windowTitle);
 			stage.setScene(new Scene(parent));
 			stage.show();
 		} catch (IOException ex) {
@@ -154,13 +188,14 @@ public class MainController implements Initializable{
 		}
 	}
 
-	private void loadDialogWindow(String loc,String title,double height,double width) {
+	private void loadDialogWindow(String locFXML,String windowTitle,double height,double width) {
+		logger.info("loadDialog Window");
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource(loc));
+			Parent parent = FXMLLoader.load(getClass().getResource(locFXML));
 			Stage stage = new Stage(StageStyle.DECORATED);
 			stage.initOwner(rootPane.getScene().getWindow());
 			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setTitle(title);
+			stage.setTitle(windowTitle);
 			stage.setScene(new Scene(parent));
 			//stage.setResizable(false);
 			stage.setMinHeight(height);
@@ -175,6 +210,9 @@ public class MainController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
 		setFolderFormat("*");
+
+		openFile = null;
 	}
 }

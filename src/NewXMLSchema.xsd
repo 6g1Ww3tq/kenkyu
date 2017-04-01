@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/NewXMLSchema"
+	xmlns:tns="http://www.example.org/NewXMLSchema" elementFormDefault="qualified">
+
+    <element name="books" type="tns:book"></element>
+    
+    <complexType name="book">
+    	<sequence>
+    		<element name="title" type="string"></element>
+    		<element name="price" type="int"></element>
+    		<element name="date" type="tns:date"></element>
+    		<element name="description" type="tns:description"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="date">
+    	<sequence>
+    		<element name="ad" type="string"></element>
+    		<element name="gengo" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="description">
+    	<sequence>
+    		<element name="emtype" type="string" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</element>
+    	</sequence>
+    </complexType>
+</schema>

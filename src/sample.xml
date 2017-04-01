@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--この書き方だと行数が長くなるが入れ子になりにくい -->
+<Root>
+	<Class name="Item" id="I0001">
+		<Field name="Name" type="String">魔道書</Field>
+	</Class>
+	<Class name="Item" id="I0002">
+		<Field name="Name" type="String">１００点テスト</Field>
+	</Class>
+	<Class name="PuyoPuyoCharacter" id="C0001">
+		<Field name="Name">Aruru Natazya</Field>
+		<Field name="Magic">Fire</Field>
+		<Field ref="I0001"></Field>
+	</Class>
+	<Class name="PuyoPuyoCharacter" id="C0002">
+		<Field name="Name" type="String">Ruru</Field>
+		<Field name="Technic" type="String">Hagansyo</Field>
+		<Field ref="I0002"></Field>
+	</Class>
+	<Class name="PuyoPuyo">
+		<Field ref="C0001"></Field>
+		<Field ref="C0002"></Field>
+	</Class>
+</Root>

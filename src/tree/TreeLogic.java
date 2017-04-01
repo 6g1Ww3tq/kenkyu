@@ -11,7 +11,6 @@ public class TreeLogic {
 
 	public TreeLogic(String format) {
 		root = new TreeItemString("Root",SETTYPE.FOLDER);
-		root.setExpanded(true);
 		if (format.equals("*")) {
 			format = ".*";
 		}else{
@@ -23,8 +22,6 @@ public class TreeLogic {
 	public TreeItemString makeTree(TreeItemString rootNode,File currentFile){
 		TreeItemString node = null;;
 		File[] files = null;
-
-		rootNode.setExpanded(true);
 
 		files = currentFile.listFiles();
 

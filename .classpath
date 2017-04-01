@@ -2,10 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-8-oracle"/>
-	<classpathentry kind="lib" path="/usr/lib/jvm/java-7-oracle/jre/lib/jfxrt.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/home/masa/API/Java/javaAPI/JavaFX7/api/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/log4j"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ApacheCommonLang"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
