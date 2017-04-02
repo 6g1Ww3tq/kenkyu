@@ -55,7 +55,7 @@
                <children>
                   <TextField fx:id="searchField" onMouseClicked="#doActivePane" promptText="analyze class" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#doAnalyze" onMouseClicked="#doActivePane" text="analyze">
+                  <Button mnemonicParsing="false" onAction="#doAnalyze" onMouseClicked="#doActivePane" text="Analyze">
                      <HBox.margin>
                         <Insets left="70.0" />
                      </HBox.margin>
@@ -63,7 +63,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSetting" onMouseClicked="#doActivePane" text="Setting">
+                  <Button layoutX="171.0" layoutY="10.0" mnemonicParsing="false" onAction="#doXML" onMouseClicked="#doActivePane" text="XML">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor></Button>

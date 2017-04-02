@@ -2,12 +2,15 @@ package main;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.xml.bind.JAXB;
 
 import alertWindow.alertWindowController;
 import analyze.reflect.ClassPathModifier;
@@ -39,7 +42,6 @@ public class MainController implements Initializable{
 	private static final int DOUBLE_CLICK = 2;
 	private static String folderFormat;
 	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MainController.class.getName());
-	private static ClassLoader classLoader = MainController.class.getClassLoader();
 
 	@FXML Text statuText;
 	@FXML TreeView<String> treeview;
@@ -62,7 +64,7 @@ public class MainController implements Initializable{
 		String msg = str.substring(0, index);
 		switch (msg) {
 		case "TextField":
-			msg = "search in treeview";
+			msg = "Input FQCN (ex. sample.Main)";
 			break;
 		case "TextArea":
 			msg = fileName;
@@ -78,25 +80,58 @@ public class MainController implements Initializable{
 	@FXML
 	public void doAnalyze(ActionEvent event) {
 		try {
-			ClassPathModifier.addClassPath(classLoader, openFile);
+			ClassPathModifier cpm = new ClassPathModifier(openFile);
+			StringBuilder sb = new StringBuilder();
 			Class<?> clazz = null;
 			String fqcn = null;
 
 			fqcn = searchField.getText();
-			clazz = classLoader.loadClass(fqcn);
+			clazz = cpm.getClass(fqcn, true);
 
+			Field fields[] = clazz.getDeclaredFields();
+			Constructor<?> constructers[] = clazz.getDeclaredConstructors();
 			Method methods[] = clazz.getDeclaredMethods();
-			for (Method method : methods) {
-				System.out.println(method);
+
+			sb.append(clazz.toString());
+
+			for (Field field : fields) {
+				sb.append(field.toString()+'\n');
 			}
-		} catch (IOException | ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
-			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", e);
+
+			for (Constructor<?> constructor : constructers) {
+				sb.append(constructor.toString());
+			}
+
+			for (Method method : methods) {
+				sb.append(method.toString()+'\n');
+			}
+
+			textarea.setText(sb.toString());
+			statuText.setText(clazz.getName() + " : analyze");
+
+			cpm.close();
+		} catch (IOException | ClassNotFoundException | SecurityException | IllegalArgumentException | NullPointerException exception) {
+			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", exception);
+		} catch (NoClassDefFoundError error){
+			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", error);
 		}
 	}
 
 	@FXML
-	public void doSetting(ActionEvent event){
-		System.out.println("setting..");
+	public void doXML(ActionEvent event){
+		try{
+			ClassPathModifier cpm = new ClassPathModifier(openFile);
+			Class<?> clazz = null;
+			String fqcn = null;
+
+			fqcn = searchField.getText();
+			clazz = cpm.getClass(fqcn, true);
+			JAXB.marshal(clazz, System.out);
+		} catch (IOException | ClassNotFoundException | SecurityException | IllegalArgumentException | NullPointerException exception) {
+			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", exception);
+		} catch (NoClassDefFoundError error){
+			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", error);
+		}
 	}
 
 	public static void setFolderFormat(String folderFormat) {
@@ -129,14 +164,6 @@ public class MainController implements Initializable{
 				,new ExtensionFilter("Class Files (*.class)", "*.class")
 				,new ExtensionFilter("Fxml Files (*.fxml)","*.fxml"));
 		fileChooser.setTitle("Open Resource File");
-
-		//List<File> list = fileChooser.showOpenMultipleDialog(new Stage());
-		//if (list != null) {
-		//logger.info("Start OpenFile");
-		//for (File file : list) {
-		//setTextArea(file);
-		//}
-		//}
 
 		openFile = fileChooser.showOpenDialog(new Stage());
 		if (openFile != null) {
@@ -175,6 +202,19 @@ public class MainController implements Initializable{
 		loadDialogWindow("/version/version.fxml", "Version", 150, 300);
 	}
 
+	private void loadAlertWindow(String locFXML,String windowTitle,Error error) {
+		try {
+			alertWindowController.setException(error);
+			Parent parent = FXMLLoader.load(getClass().getResource(locFXML));
+			Stage stage = new Stage(StageStyle.DECORATED);
+			stage.setTitle(windowTitle);
+			stage.setScene(new Scene(parent));
+			stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
 	private void loadAlertWindow(String locFXML,String windowTitle,Exception exception) {
 		try {
 			alertWindowController.setException(exception);
@@ -197,7 +237,6 @@ public class MainController implements Initializable{
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle(windowTitle);
 			stage.setScene(new Scene(parent));
-			//stage.setResizable(false);
 			stage.setMinHeight(height);
 			stage.setMaxHeight(height);
 			stage.setMaxWidth(width);

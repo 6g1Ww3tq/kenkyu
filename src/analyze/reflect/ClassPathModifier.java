@@ -2,19 +2,32 @@ package analyze.reflect;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
 public class ClassPathModifier {
+	URL url;
+	URLClassLoader loader;
 
-	public static void addClassPath(ClassLoader classLoadr,File path) throws IOException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException ,NullPointerException{
-		if (classLoadr instanceof URLClassLoader) {
-			Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
-			method.setAccessible(true);
+	public ClassPathModifier(File path) throws MalformedURLException {
+		URL url = path.toURI().toURL();
+		URLClassLoader loader = new URLClassLoader(new URL[] {
+				url
+		});
 
-			method.invoke(classLoadr, path.toURI().toURL());
-		}
+		this.url = url;
+		this.loader = loader;
 	}
+
+	public Class<?> getClass(String fqcn,boolean initialize) throws ClassNotFoundException{
+		return Class.forName(fqcn, initialize, loader);
+	}
+
+	public void close() throws IOException {
+		loader.close();
+		url = null;
+		System.gc();
+	}
+
 }

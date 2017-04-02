@@ -16,8 +16,13 @@ public class alertWindowController implements Initializable{
 	@FXML Button okButton;
 
 	private static Exception exception;
-	
+	private static Error error;
+
 	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(alertWindowController.class.getName());
+
+	public static void setException(Error error) {
+		alertWindowController.error = error;
+	}
 
 	public static void setException(Exception exception) {
 		alertWindowController.exception = exception;
@@ -27,12 +32,25 @@ public class alertWindowController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
-		exception.printStackTrace(pw);
+
+		if (exception != null) {
+			exception.printStackTrace(pw);
+			logger.error("ERROR");
+			logger.error(exception.toString());
+		}
+
+		if (error != null) {
+			error.printStackTrace(pw);
+			logger.error("ERROR");
+			logger.error(error.toString());
+		}
 		pw.flush();
-		
+
 		textArea.setText(sw.toString());
-		logger.error("ERROR");
-		logger.error(exception.toString());
+
+		pw.close();
+		exception = null;
+		error = null;
 	}
 
 	@FXML
