@@ -1,4 +1,4 @@
-package analyze.reflect;
+package analyzer.classpath;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,21 +6,19 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-public class ClassPathModifier {
+public class ClassPathLoader {
 	URL url;
 	URLClassLoader loader;
 
-	public ClassPathModifier(File path) throws MalformedURLException {
+	public ClassPathLoader(File path) throws MalformedURLException {
 		URL url = path.toURI().toURL();
-		URLClassLoader loader = new URLClassLoader(new URL[] {
-				url
-		});
+		URLClassLoader loader = new URLClassLoader(new URL[] { url });
 
 		this.url = url;
 		this.loader = loader;
 	}
 
-	public Class<?> getClass(String fqcn,boolean initialize) throws ClassNotFoundException{
+	public Class<?> getClass(String fqcn, boolean initialize) throws ClassNotFoundException {
 		return Class.forName(fqcn, initialize, loader);
 	}
 

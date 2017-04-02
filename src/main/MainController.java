@@ -2,18 +2,18 @@ package main;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.xml.bind.JAXB;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import alertWindow.alertWindowController;
-import analyze.reflect.ClassPathModifier;
+import analyzer.classpath.ClassPathLoader;
+import analyzer.reflect.Analyzer;
+import analyzer.xmlBuilder.XMLBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,33 +80,18 @@ public class MainController implements Initializable{
 	@FXML
 	public void doAnalyze(ActionEvent event) {
 		try {
-			ClassPathModifier cpm = new ClassPathModifier(openFile);
-			StringBuilder sb = new StringBuilder();
+			ClassPathLoader cpm = new ClassPathLoader(openFile);
 			Class<?> clazz = null;
 			String fqcn = null;
+			Analyzer analyzer = null;
 
 			fqcn = searchField.getText();
 			clazz = cpm.getClass(fqcn, true);
+			analyzer = new Analyzer(clazz);
 
-			Field fields[] = clazz.getDeclaredFields();
-			Constructor<?> constructers[] = clazz.getDeclaredConstructors();
-			Method methods[] = clazz.getDeclaredMethods();
+			analyzer.doAnalyze();
 
-			sb.append(clazz.toString());
-
-			for (Field field : fields) {
-				sb.append(field.toString()+'\n');
-			}
-
-			for (Constructor<?> constructor : constructers) {
-				sb.append(constructor.toString());
-			}
-
-			for (Method method : methods) {
-				sb.append(method.toString()+'\n');
-			}
-
-			textarea.setText(sb.toString());
+			System.out.println(analyzer.toString());
 			statuText.setText(clazz.getName() + " : analyze");
 
 			cpm.close();
@@ -120,14 +105,19 @@ public class MainController implements Initializable{
 	@FXML
 	public void doXML(ActionEvent event){
 		try{
-			ClassPathModifier cpm = new ClassPathModifier(openFile);
+			ClassPathLoader cpm = new ClassPathLoader(openFile);
 			Class<?> clazz = null;
 			String fqcn = null;
+			XMLBuilder xmlb = null;
 
 			fqcn = searchField.getText();
 			clazz = cpm.getClass(fqcn, true);
-			JAXB.marshal(clazz, System.out);
-		} catch (IOException | ClassNotFoundException | SecurityException | IllegalArgumentException | NullPointerException exception) {
+			xmlb = new XMLBuilder(clazz);
+			
+			xmlb.doXMLBuilder();
+
+			System.out.println(xmlb.toString());
+		} catch (IOException | ClassNotFoundException | SecurityException | IllegalArgumentException | NullPointerException | ParserConfigurationException | TransformerException exception) {
 			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", exception);
 		} catch (NoClassDefFoundError error){
 			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", error);
