@@ -15,9 +15,9 @@ public class TreeItemString extends TreeItem<String> {
 	public TreeItemString(String value,SETTYPE type) {
 		Image image = null;
 		if (type == SETTYPE.FOLDER) {
-			image = new Image(getClass().getResourceAsStream("../icons/folder.png"));
+			image = new Image(getClass().getResourceAsStream("/icons/folder.png"));
 		}else{
-			image = new Image(getClass().getResourceAsStream("../icons/file.png"));
+			image = new Image(getClass().getResourceAsStream("/icons/file.png"));
 		}
 		this.type = type;
 		this.imageView = new ImageView(image);

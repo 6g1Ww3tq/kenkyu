@@ -33,15 +33,17 @@ public class alertWindowController implements Initializable{
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 
+		textArea.setEditable(false);
+		
 		if (exception != null) {
 			exception.printStackTrace(pw);
-			logger.error("ERROR");
+			logger.error("ERROR:");
 			logger.error(exception.toString());
 		}
 
 		if (error != null) {
 			error.printStackTrace(pw);
-			logger.error("ERROR");
+			logger.error("ERROR:");
 			logger.error(error.toString());
 		}
 		pw.flush();

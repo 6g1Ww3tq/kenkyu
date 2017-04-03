@@ -35,6 +35,7 @@ import textarea.TextAreaInputer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import messageWindow.MessageWindowController;
 import tree.TreeLogic;
 import type.SETTYPE;
 
@@ -91,8 +92,8 @@ public class MainController implements Initializable{
 
 			analyzer.doAnalyze();
 
-			System.out.println(analyzer.toString());
-			statuText.setText(clazz.getName() + " : analyze");
+			MessageWindowController.setTextMsg(analyzer.toString());
+			loadDialogWindow("/messageWindow/messageWindow.fxml", clazz.getName(), 300, 500);
 
 			cpm.close();
 		} catch (IOException | ClassNotFoundException | SecurityException | IllegalArgumentException | NullPointerException exception) {
@@ -116,7 +117,9 @@ public class MainController implements Initializable{
 			
 			xmlb.doXMLBuilder();
 
-			System.out.println(xmlb.toString());
+			MessageWindowController.setTextMsg(xmlb.toString());
+			loadDialogWindow("/messageWindow/messageWindow.fxml", clazz.getName(), 300, 500);
+
 		} catch (IOException | ClassNotFoundException | SecurityException | IllegalArgumentException | NullPointerException | ParserConfigurationException | TransformerException exception) {
 			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", exception);
 		} catch (NoClassDefFoundError error){

@@ -1,0 +1,10 @@
+2017-04-03 20:42:24.442 [main]INFO main.Main - lancher start
+2017-04-03 20:42:26.614 [JavaFX Application Thread]ERRORalertWindow.alertWindowController - ERROR:
+2017-04-03 20:42:26.615 [JavaFX Application Thread]ERRORalertWindow.alertWindowController - java.lang.NullPointerException
+2017-04-03 20:42:41.118 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-03 20:42:41.118 [JavaFX Application Thread]INFO main.MainController - loadDialog Window
+2017-04-03 20:42:45.812 [JavaFX Application Thread]INFO main.MainController - loadDialog Window
+2017-04-03 20:42:53.798 [JavaFX Application Thread]INFO main.MainController - loadDialog Window
+2017-04-03 20:43:02.069 [JavaFX Application Thread]INFO main.MainController - loadDialog Window
+2017-04-03 20:43:06.657 [JavaFX Application Thread]ERRORalertWindow.alertWindowController - ERROR:
+2017-04-03 20:43:06.657 [JavaFX Application Thread]ERRORalertWindow.alertWindowController - java.lang.ClassNotFoundException: 
