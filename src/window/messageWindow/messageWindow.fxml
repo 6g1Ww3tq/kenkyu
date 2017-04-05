@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="messageWindow.MessageWindowController">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="window.messageWindow.MessageWindowController">
    <center>
       <TextArea fx:id="textArea" BorderPane.alignment="CENTER" />
    </center>

@@ -4,22 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import alertWindow.alertWindowController;
 import analyzer.classpath.ClassPathLoader;
 import analyzer.reflect.Analyzer;
 import analyzer.xmlBuilder.XMLBuilder;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -32,12 +27,12 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import textarea.TextAreaInputer;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import messageWindow.MessageWindowController;
+import javafx.stage.WindowEvent;
 import tree.TreeLogic;
 import type.SETTYPE;
+import window.load.LoadWindow;
+import window.messageWindow.MessageWindowController;
 
 public class MainController implements Initializable{
 	private static final int DOUBLE_CLICK = 2;
@@ -51,7 +46,7 @@ public class MainController implements Initializable{
 	@FXML TextField searchField;
 
 	private String fileName;
-	private static File openFile;
+	private File openFile;
 
 	@FXML
 	public void doActivePane(MouseEvent event) {
@@ -80,6 +75,7 @@ public class MainController implements Initializable{
 
 	@FXML
 	public void doAnalyze(ActionEvent event) {
+		LoadWindow lw = new LoadWindow(rootPane);
 		try {
 			ClassPathLoader cpm = new ClassPathLoader(openFile);
 			Class<?> clazz = null;
@@ -93,18 +89,19 @@ public class MainController implements Initializable{
 			analyzer.doAnalyze();
 
 			MessageWindowController.setTextMsg(analyzer.toString());
-			loadDialogWindow("/messageWindow/messageWindow.fxml", clazz.getName(), 300, 500);
+			lw.loadDialogWindow("/window/messageWindow/messageWindow.fxml", clazz.getName(), 300, 500);
 
 			cpm.close();
 		} catch (IOException | ClassNotFoundException | SecurityException | IllegalArgumentException | NullPointerException exception) {
-			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", exception);
+			lw.loadAlertWindow("/window/alertWindow/alertWindow.fxml", "Alert", exception);
 		} catch (NoClassDefFoundError error){
-			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", error);
+			lw.loadAlertWindow("/window/alertWindow/alertWindow.fxml", "Alert", error);
 		}
 	}
 
 	@FXML
 	public void doXML(ActionEvent event){
+		LoadWindow lw = new LoadWindow(rootPane);
 		try{
 			ClassPathLoader cpm = new ClassPathLoader(openFile);
 			Class<?> clazz = null;
@@ -114,16 +111,16 @@ public class MainController implements Initializable{
 			fqcn = searchField.getText();
 			clazz = cpm.getClass(fqcn, true);
 			xmlb = new XMLBuilder(clazz);
-			
+
 			xmlb.doXMLBuilder();
 
 			MessageWindowController.setTextMsg(xmlb.toString());
-			loadDialogWindow("/messageWindow/messageWindow.fxml", clazz.getName(), 300, 500);
+			lw.loadDialogWindow("/window/messageWindow/messageWindow.fxml", clazz.getName(), 300, 500);
 
 		} catch (IOException | ClassNotFoundException | SecurityException | IllegalArgumentException | NullPointerException | ParserConfigurationException | TransformerException exception) {
-			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", exception);
+			lw.loadAlertWindow("/window/alertWindow/alertWindow.fxml", "Alert", exception);
 		} catch (NoClassDefFoundError error){
-			loadAlertWindow("/alertWindow/alertWindow.fxml", "Alert", error);
+			lw.loadAlertWindow("/window/alertWindow/alertWindow.fxml", "Alert", error);
 		}
 	}
 
@@ -133,17 +130,27 @@ public class MainController implements Initializable{
 
 	@FXML
 	public void doOpenFolder(ActionEvent event){
+		LoadWindow lw = new LoadWindow(rootPane);
 		DirectoryChooser dirChooser = new DirectoryChooser();
 		dirChooser.setTitle("Open Resource Directory");
 		TreeLogic tl = null;
+		Stage chooseWindow = new Stage();
 
-		openFile = dirChooser.showDialog(new Stage());
+		chooseWindow.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent event) {
+				openFile = null;
+			}
+		});
+		openFile = dirChooser.showDialog(chooseWindow);
+
 		if (openFile!=null) {
 			logger.info("Start OpenFolder");
-			loadDialogWindow("/format/fileformat.fxml", "Choose File Format", 150, 300);
-			tl = new TreeLogic(folderFormat);
-			tl.makeTree(tl.getRoot(), openFile);
-			treeview.setRoot(tl.getRoot());
+			if(lw.loadDialogWindow("/format/fileformat.fxml", "Choose File Format", 150, 300)){
+				tl = new TreeLogic(folderFormat);
+				tl.makeTree(tl.getRoot(), openFile);
+				treeview.setRoot(tl.getRoot());
+			}
 		}
 
 	}
@@ -151,6 +158,7 @@ public class MainController implements Initializable{
 	@FXML
 	public void doOpenFile(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
+		Stage chooseWindow = new Stage();
 
 		fileChooser.getExtensionFilters().addAll(
 				new ExtensionFilter("Java Files (*.java)", "*.java")
@@ -158,7 +166,7 @@ public class MainController implements Initializable{
 				,new ExtensionFilter("Fxml Files (*.fxml)","*.fxml"));
 		fileChooser.setTitle("Open Resource File");
 
-		openFile = fileChooser.showOpenDialog(new Stage());
+		openFile = fileChooser.showOpenDialog(chooseWindow);
 		if (openFile != null) {
 			logger.info("Start OpenFile");
 			setTextArea(openFile);
@@ -177,66 +185,23 @@ public class MainController implements Initializable{
 		}
 	}
 
+	@FXML
+	public void doClose(ActionEvent event){
+		LoadWindow lw = new LoadWindow(rootPane);
+		lw.loadDialogWindow("/close/closeDialog.fxml", "Exit ?", 100, 200);
+	}
+
+	@FXML
+	public void doAbout(ActionEvent event){
+		LoadWindow lw = new LoadWindow(rootPane);
+		lw.loadDialogWindow("/version/version.fxml", "Version", 150, 300);
+	}
+
 	private void setTextArea(File file) {
 		if (file.isFile()) {
 			fileName = file.getName();
 			TextAreaInputer tai = new TextAreaInputer(textarea);
 			tai.setText(file, SETTYPE.FILE);
-		}
-	}
-
-	@FXML
-	public void doClose(ActionEvent event){
-		loadDialogWindow("/close/closeDialog.fxml", "Exit ?", 100, 200);
-	}
-
-	@FXML
-	public void doAbout(ActionEvent event){
-		loadDialogWindow("/version/version.fxml", "Version", 150, 300);
-	}
-
-	private void loadAlertWindow(String locFXML,String windowTitle,Error error) {
-		try {
-			alertWindowController.setException(error);
-			Parent parent = FXMLLoader.load(getClass().getResource(locFXML));
-			Stage stage = new Stage(StageStyle.DECORATED);
-			stage.setTitle(windowTitle);
-			stage.setScene(new Scene(parent));
-			stage.show();
-		} catch (IOException ex) {
-			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
-
-	private void loadAlertWindow(String locFXML,String windowTitle,Exception exception) {
-		try {
-			alertWindowController.setException(exception);
-			Parent parent = FXMLLoader.load(getClass().getResource(locFXML));
-			Stage stage = new Stage(StageStyle.DECORATED);
-			stage.setTitle(windowTitle);
-			stage.setScene(new Scene(parent));
-			stage.show();
-		} catch (IOException ex) {
-			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
-
-	private void loadDialogWindow(String locFXML,String windowTitle,double height,double width) {
-		logger.info("loadDialog Window");
-		try {
-			Parent parent = FXMLLoader.load(getClass().getResource(locFXML));
-			Stage stage = new Stage(StageStyle.DECORATED);
-			stage.initOwner(rootPane.getScene().getWindow());
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setTitle(windowTitle);
-			stage.setScene(new Scene(parent));
-			stage.setMinHeight(height);
-			stage.setMaxHeight(height);
-			stage.setMaxWidth(width);
-			stage.setMinWidth(width);
-			stage.showAndWait();
-		}catch (IOException ex) {
-			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 

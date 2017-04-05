@@ -1,4 +1,4 @@
-package alertWindow;
+package window.alertWindow;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
