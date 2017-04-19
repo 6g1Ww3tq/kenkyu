@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="version.VersionController">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="window.version.VersionController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Version 0.1" BorderPane.alignment="CENTER">
          <font>

@@ -1,4 +1,4 @@
-package format;
+package window.format;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

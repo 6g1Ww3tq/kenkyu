@@ -1,4 +1,4 @@
-package version;
+package window.version;
 
 import java.io.IOException;
 
@@ -39,7 +39,7 @@ public class VersionController{
 	public void display() {
 		Parent root;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/version.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/window/version.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.showAndWait();

@@ -1,7 +1,9 @@
+import foo.Foo;
 
 public class Hoge {
 	private  int id;
 	private String value;
+	private Foo foo;
 
 	public int getId() {
 		return id;

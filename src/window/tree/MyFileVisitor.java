@@ -1,4 +1,4 @@
-package tree;
+package window.tree;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;

@@ -1,4 +1,4 @@
-package main;
+package window.main;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,6 @@ import analyzer.classpath.ClassPathLoader;
 import analyzer.reflect.Analyzer;
 import analyzer.xmlBuilder.XMLBuilder;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -26,18 +25,17 @@ import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import textarea.TextAreaInputer;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import tree.TreeLogic;
-import type.SETTYPE;
+import type.FILETYPE;
 import window.load.LoadWindow;
 import window.messageWindow.MessageWindowController;
+import window.textarea.TextAreaInputer;
+import window.tree.TreeLogic;
 
-public class MainController implements Initializable{
+public class MainWindowController implements Initializable{
 	private static final int DOUBLE_CLICK = 2;
 	private static String folderFormat;
-	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MainController.class.getName());
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MainWindowController.class.getName());
 
 	@FXML Text statuText;
 	@FXML TreeView<String> treeview;
@@ -47,6 +45,7 @@ public class MainController implements Initializable{
 
 	private String fileName;
 	private File openFile;
+	private LoadWindow lw;
 
 	@FXML
 	public void doActivePane(MouseEvent event) {
@@ -58,24 +57,19 @@ public class MainController implements Initializable{
 		String str = obj.toString();
 		int index = str.indexOf("[");
 		String msg = str.substring(0, index);
-		switch (msg) {
-		case "TextField":
+		if (msg.equals("TextField")) {
 			msg = "Input FQCN (ex. sample.Main)";
-			break;
-		case "TextArea":
+		}else if (msg.equals("TextArea")) {
 			msg = fileName;
-			break;
-		case "TreeView":
+		}else if (msg.equals("TreeView")) {
 			msg = "view";
-		default:
-			break;
 		}
 		statuText.setText(msg);
+
 	}
 
 	@FXML
 	public void doAnalyze(ActionEvent event) {
-		LoadWindow lw = new LoadWindow(rootPane);
 		try {
 			ClassPathLoader cpm = new ClassPathLoader(openFile);
 			Class<?> clazz = null;
@@ -101,7 +95,6 @@ public class MainController implements Initializable{
 
 	@FXML
 	public void doXML(ActionEvent event){
-		LoadWindow lw = new LoadWindow(rootPane);
 		try{
 			ClassPathLoader cpm = new ClassPathLoader(openFile);
 			Class<?> clazz = null;
@@ -125,28 +118,22 @@ public class MainController implements Initializable{
 	}
 
 	public static void setFolderFormat(String folderFormat) {
-		MainController.folderFormat = folderFormat;
+		MainWindowController.folderFormat = folderFormat;
 	}
 
 	@FXML
 	public void doOpenFolder(ActionEvent event){
-		LoadWindow lw = new LoadWindow(rootPane);
+		lw = new LoadWindow(rootPane);
 		DirectoryChooser dirChooser = new DirectoryChooser();
 		dirChooser.setTitle("Open Resource Directory");
 		TreeLogic tl = null;
 		Stage chooseWindow = new Stage();
 
-		chooseWindow.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			@Override
-			public void handle(WindowEvent event) {
-				openFile = null;
-			}
-		});
 		openFile = dirChooser.showDialog(chooseWindow);
 
 		if (openFile!=null) {
 			logger.info("Start OpenFolder");
-			if(lw.loadDialogWindow("/format/fileformat.fxml", "Choose File Format", 150, 300)){
+			if(lw.loadDialogWindow("/window/format/fileformat.fxml", "Choose File Format", 150, 300)){
 				tl = new TreeLogic(folderFormat);
 				tl.makeTree(tl.getRoot(), openFile);
 				treeview.setRoot(tl.getRoot());
@@ -187,27 +174,25 @@ public class MainController implements Initializable{
 
 	@FXML
 	public void doClose(ActionEvent event){
-		LoadWindow lw = new LoadWindow(rootPane);
-		lw.loadDialogWindow("/close/closeDialog.fxml", "Exit ?", 100, 200);
+		lw.loadDialogWindow("/window/close/closeDialog.fxml", "Exit ?", 100, 200);
 	}
 
 	@FXML
 	public void doAbout(ActionEvent event){
-		LoadWindow lw = new LoadWindow(rootPane);
-		lw.loadDialogWindow("/version/version.fxml", "Version", 150, 300);
+		lw.loadDialogWindow("/window/version/version.fxml", "Version", 150, 300);
 	}
 
 	private void setTextArea(File file) {
 		if (file.isFile()) {
 			fileName = file.getName();
 			TextAreaInputer tai = new TextAreaInputer(textarea);
-			tai.setText(file, SETTYPE.FILE);
+			tai.setText(file, FILETYPE.FILE);
 		}
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		lw = new LoadWindow(rootPane);
 		setFolderFormat("*");
 
 		openFile = null;

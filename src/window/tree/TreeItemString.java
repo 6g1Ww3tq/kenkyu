@@ -1,23 +1,23 @@
-package tree;
+package window.tree;
 
 import java.io.File;
 
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import type.SETTYPE;
+import type.FILETYPE;
 
 public class TreeItemString extends TreeItem<String> {
-	SETTYPE type;
+	FILETYPE type;
 	private ImageView imageView;
 	File file;
 
-	public TreeItemString(String value,SETTYPE type) {
+	public TreeItemString(String value,FILETYPE type) {
 		Image image = null;
-		if (type == SETTYPE.FOLDER) {
-			image = new Image(getClass().getResourceAsStream("/icons/folder.png"));
+		if (type == FILETYPE.FOLDER) {
+			image = new Image(getClass().getResourceAsStream("/window/icons/folder.png"));
 		}else{
-			image = new Image(getClass().getResourceAsStream("/icons/file.png"));
+			image = new Image(getClass().getResourceAsStream("/window/icons/file.png"));
 		}
 		this.type = type;
 		this.imageView = new ImageView(image);

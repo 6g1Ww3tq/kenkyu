@@ -12,7 +12,7 @@ public class Analyzer {
 		this.clazz = clazz;
 		this.sb = new StringBuilder();
 	}
-	
+
 	@Override
 	public String toString() {
 		return sb.toString();

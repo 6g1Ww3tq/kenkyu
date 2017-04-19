@@ -19,6 +19,8 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import analyzer.reflect.ModifierBuilder;
+
 public class XMLBuilder {
 	Class<?> clazz;
 	StringBuilder sb;
@@ -35,64 +37,106 @@ public class XMLBuilder {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbFactory.newDocumentBuilder();
 		document = db.newDocument();
+		root = document.createElement("Root");
+		document.appendChild(root);
 	}
 
 	public void doXMLBuilder() throws TransformerException, IOException{
 		TransformerFactory tFactory = TransformerFactory.newInstance();
 		Transformer transformer = tFactory.newTransformer();
 		StringWriter sw = new StringWriter();
-		
-		setClassElement();
-		setFieldElement();
-		setConstructorElement();
-		setMethodElement();
-		
+
+		Element clazzElement = setClassElement();
+		setFieldElement(clazzElement);
+		setConstructorElement(clazzElement);
+		setMethodElement(clazzElement);
+
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-//		transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "http://"
-//				+ "jakarta.apache.org/struts/dtds/struts-config_1_1.dtd");
+		//		transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "http://"
+		//				+ "jakarta.apache.org/struts/dtds/struts-config_1_1.dtd");
 		transformer.transform(new DOMSource(document), new StreamResult(sw));
 
 		sb.append(sw.toString());
 		sw.close();
 	}
 
-	private void setClassElement() {
-		root = document.createElement(clazz.getName());
-		document.appendChild(root);
+	private Element setClassElement() {
+		Element element = document.createElement("Class");
+		int fieldModifiers = clazz.getModifiers();
+		ModifierBuilder mb = new ModifierBuilder(fieldModifiers);
+
+		element.setAttribute("modifiers", mb.toString());
+		element.setAttribute("name", clazz.getName());
+		root.appendChild(element);
+		return element;
 	}
 
-	private void setFieldElement() {
-		Field fields[] = clazz.getDeclaredFields();
+	private void setFieldElement(Element clazzElement) {
 		Element element = null;
+		Element fieldTag = null;
+		Field fields[] = clazz.getDeclaredFields();
+		Class<?> fieldType = null;
+		int fieldModifiers;
+		ModifierBuilder mb = null;
+
+		fieldTag = document.createElement("Fields");
 
 		for (Field field : fields) {
 			field.setAccessible(true);
+			fieldModifiers = field.getModifiers();
+			mb = new ModifierBuilder(fieldModifiers);
+			fieldType = field.getType();
 			element = document.createElement(field.getName());
-			root.appendChild(element);
+			element.setAttribute("type", fieldType.getName());
+			element.setAttribute("modifiers", mb.toString());
+			fieldTag.appendChild(element);
 		}
+		clazzElement.appendChild(fieldTag);
 	}
 
-	private void setConstructorElement() {
-		Constructor<?> constructors[] = clazz.getDeclaredConstructors();
+	private void setConstructorElement(Element clazzElement) {
 		Element element = null;
+		Element constructorTag = null;
+		Constructor<?> constructors[] = clazz.getDeclaredConstructors();
+		//		Class<?> constructorParams = null;
+		int constructorModifier;
+		ModifierBuilder mb = null;
+
+		constructorTag = document.createElement("Constructors");
 
 		for (Constructor<?> constructor : constructors) {
 			constructor.setAccessible(true);
+			constructorModifier = constructor.getModifiers();
+			mb = new ModifierBuilder(constructorModifier);
+			//			constructorParams = constructor.getTypeParameters();
 			element = document.createElement(constructor.getName());
-			root.appendChild(element);
+			element.setAttribute("modifiers", mb.toString());
+			constructorTag.appendChild(element);
 		}
+		clazzElement.appendChild(constructorTag);
 	}
 
-	private void setMethodElement() {
-		Method methods[] = clazz.getDeclaredMethods();
+	private void setMethodElement(Element clazzElement) {
 		Element element = null;
+		Element methodTag = null;
+		Method methods[] = clazz.getDeclaredMethods();
+		//		Class<?> methodParams = null;
+		int methodModifier;
+		ModifierBuilder mb = null;
+
+		methodTag = document.createElement("Methods");
 
 		for (Method method : methods) {
 			method.setAccessible(true);
+			methodModifier = method.getModifiers();
+			mb = new ModifierBuilder(methodModifier);
+			//			constructorParams = constructor.getTypeParameters();
 			element = document.createElement(method.getName());
-			root.appendChild(element);
+			element.setAttribute("modifiers", mb.toString());
+			methodTag.appendChild(element);
 		}
+		clazzElement.appendChild(methodTag);
 	}
 
 	@Override

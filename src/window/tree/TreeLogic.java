@@ -1,16 +1,16 @@
-package tree;
+package window.tree;
 
 import java.io.File;
 
 //import javafx.scene.input.MouseEvent;
-import type.SETTYPE;
+import type.FILETYPE;
 
 public class TreeLogic {
 	private TreeItemString root;
 	private String regex;
 
 	public TreeLogic(String format) {
-		root = new TreeItemString("Root",SETTYPE.FOLDER);
+		root = new TreeItemString("Root",FILETYPE.FOLDER);
 		if (format.equals("*")) {
 			format = ".*";
 		}else{
@@ -27,12 +27,12 @@ public class TreeLogic {
 
 		for (File file : files) {
 			if (file.isDirectory()) {
-				node = new TreeItemString(file.getName(),SETTYPE.FOLDER);
+				node = new TreeItemString(file.getName(),FILETYPE.FOLDER);
 				node.setFile(file);
 				node.getChildren().add(makeTree(node,file));
 			}else{
 				if (file.getName().matches(regex)) {
-					node = new TreeItemString(file.getName(),SETTYPE.FILE);
+					node = new TreeItemString(file.getName(),FILETYPE.FILE);
 					node.setFile(file);
 				}
 			}

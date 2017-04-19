@@ -127,3 +127,249 @@
 2017-04-05 15:30:33.329 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
 2017-04-05 15:30:33.330 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
 2017-04-05 15:30:53.614 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:33:25.697 [main]INFO main.Main - lancher start
+2017-04-05 15:33:30.374 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-05 15:33:30.375 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:33:59.564 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:34:02.330 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:34:15.873 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:34:19.321 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:34:24.194 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText MainController$1.class
+2017-04-05 15:34:25.121 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText MainController.class
+2017-04-05 15:34:29.117 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText MainController$1.class
+2017-04-05 15:34:33.737 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText TreeLogic.class
+2017-04-05 15:34:37.051 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:34:47.965 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:35:10.295 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:35:14.073 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:35:19.251 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-05 15:35:19.252 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:35:30.183 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText SampleLog4J.java
+2017-04-05 15:35:34.575 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText ParserSample.java
+2017-04-05 15:35:43.039 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText SampleLog4J.java
+2017-04-05 15:35:43.892 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText NewXMLSchema.xsd
+2017-04-05 15:35:52.399 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText FormatController.java
+2017-04-05 15:35:53.220 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText MenuItemEvent.java
+2017-04-05 15:35:56.757 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText SETTYPE.java
+2017-04-05 15:36:04.731 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-05 15:36:04.731 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:36:14.947 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:36:33.746 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:38:24.249 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-05 15:38:24.249 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.NullPointerException
+2017-04-05 15:38:27.181 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-05 15:38:27.182 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.NullPointerException
+2017-04-05 15:38:39.464 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:45:41.960 [main]INFO main.Main - lancher start
+2017-04-05 15:45:53.093 [main]INFO main.Main - lancher start
+2017-04-05 15:46:18.144 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:46:19.884 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:46:46.940 [main]INFO main.Main - lancher start
+2017-04-05 15:48:07.305 [main]INFO main.Main - lancher start
+2017-04-05 15:48:12.812 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-05 15:48:12.813 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:48:22.373 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-05 15:48:22.373 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.ClassNotFoundException: JXBSample
+2017-04-05 15:48:28.994 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:48:32.621 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:51:14.783 [main]INFO main.Main - lancher start
+2017-04-05 15:51:22.408 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-05 15:51:22.409 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:51:30.578 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:53:16.530 [main]INFO main.Main - lancher start
+2017-04-05 15:53:21.359 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-05 15:53:21.359 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:53:36.631 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:53:38.977 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:53:43.082 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:54:23.713 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:54:26.861 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:54:41.618 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-05 15:54:41.618 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:54:45.060 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText JAXBSample.java
+2017-04-05 15:54:48.222 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText ParserSample2.java
+2017-04-05 15:54:54.553 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-05 15:54:59.526 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText CloseDialogController.java
+2017-04-05 15:55:03.178 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText ParserSample.java
+2017-04-06 21:59:04.110 [main]INFO main.Main - lancher start
+2017-04-06 21:59:09.905 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-06 21:59:09.906 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-06 21:59:13.780 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-06 21:59:47.357 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-06 22:00:17.395 [main]INFO main.Main - lancher start
+2017-04-06 22:00:22.555 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-06 22:00:22.556 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-06 22:00:32.660 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-06 22:00:49.421 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 20:53:50.082 [main]INFO main.Main - lancher start
+2017-04-07 20:53:56.235 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 20:53:56.236 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 20:54:00.988 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 20:58:53.875 [main]INFO main.Main - lancher start
+2017-04-07 20:58:59.344 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 20:58:59.345 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 20:59:04.086 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 20:59:06.527 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:20:13.414 [main]INFO main.Main - lancher start
+2017-04-07 21:20:17.956 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 21:20:17.956 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:20:21.941 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:20:59.252 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-07 21:20:59.253 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.ClassNotFoundException: main.MainConstructor
+2017-04-07 21:21:14.791 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-07 21:21:14.791 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.ClassNotFoundException: main.Hoge
+2017-04-07 21:21:21.853 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:22:20.565 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:22:35.280 [main]INFO main.Main - lancher start
+2017-04-07 21:22:42.242 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 21:22:42.242 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:22:59.572 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:23:34.840 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:23:43.264 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:24:07.434 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:24:33.408 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 21:24:33.408 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:24:52.241 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:25:02.023 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:25:10.629 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText sample.xml
+2017-04-07 21:26:18.210 [main]INFO main.Main - lancher start
+2017-04-07 21:26:23.929 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 21:26:23.930 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:26:43.383 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-07 21:26:43.384 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.ClassNotFoundException: tree.TreeeLogic
+2017-04-07 21:26:48.284 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:32:04.377 [main]INFO main.Main - lancher start
+2017-04-07 21:32:18.206 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 21:32:18.207 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:32:48.897 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:35:58.620 [main]INFO main.Main - lancher start
+2017-04-07 21:36:04.522 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 21:36:04.523 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:36:09.719 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:36:43.439 [main]INFO main.Main - lancher start
+2017-04-07 21:36:48.479 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 21:36:48.479 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:36:53.602 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:38:51.425 [main]INFO main.Main - lancher start
+2017-04-07 21:38:57.553 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-07 21:38:57.554 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-07 21:39:12.101 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-08 20:23:31.780 [main]INFO main.Main - lancher start
+2017-04-08 20:23:39.424 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-08 20:33:56.528 [main]INFO main.Main - lancher start
+2017-04-08 20:34:09.127 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-08 20:34:09.128 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-08 20:34:15.724 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-08 20:34:17.993 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-08 20:34:22.169 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-08 20:34:22.169 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.ClassNotFoundException: 
+2017-04-08 20:36:54.619 [main]INFO main.Main - lancher start
+2017-04-08 20:36:57.069 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-08 20:36:57.069 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.NullPointerException
+2017-04-08 20:37:00.589 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-08 20:37:00.590 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.NullPointerException
+2017-04-18 08:33:35.368 [main]INFO main.Main - lancher start
+2017-04-18 08:33:38.891 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:33:46.597 [JavaFX Application Thread]INFO main.MainController - Start OpenFile
+2017-04-18 08:33:46.598 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText LoadWindow.java
+2017-04-18 08:34:03.455 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-18 08:34:03.455 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:34:10.089 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-18 08:34:10.090 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:34:19.667 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-18 08:34:19.667 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:34:29.788 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:34:38.319 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:35:04.159 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:35:07.927 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:37:31.535 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 08:37:34.528 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 11:35:06.994 [main]INFO main.Main - lancher start
+2017-04-18 11:35:12.659 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-18 11:35:12.660 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.NullPointerException
+2017-04-18 11:35:16.796 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-18 11:35:16.796 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.NullPointerException
+2017-04-18 12:33:34.901 [main]INFO main.Main - lancher start
+2017-04-18 12:33:43.775 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-18 12:33:43.780 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 12:35:03.197 [main]INFO main.Main - lancher start
+2017-04-18 12:35:08.985 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-18 12:35:08.986 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 12:35:29.720 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 12:35:34.825 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 12:36:03.266 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 12:36:05.598 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 12:36:09.512 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 12:36:36.391 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-18 12:36:42.853 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 19:53:15.058 [main]INFO main.Main - lancher start
+2017-04-19 19:53:21.367 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-19 19:53:21.368 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 19:53:44.601 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 19:53:54.307 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:29:43.835 [main]INFO main.Main - lancher start
+2017-04-19 20:29:49.460 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-19 20:29:49.461 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:29:51.949 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-19 20:29:51.950 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.ClassNotFoundException: 
+2017-04-19 20:30:02.725 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:30:06.197 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:30:17.982 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-19 20:30:17.982 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:30:22.607 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText JAXBSample.java
+2017-04-19 20:30:24.947 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText Sample.java
+2017-04-19 20:30:26.773 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText ParserSample.java
+2017-04-19 20:30:34.868 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText SampleLog4J.java
+2017-04-19 20:30:40.595 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-19 20:30:40.595 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:30:50.761 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:30:53.729 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:37:32.933 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:38:13.062 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-19 20:38:13.062 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:38:16.245 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText JAXBSample.java
+2017-04-19 20:38:20.095 [JavaFX Application Thread]INFO textarea.TextAreaInputer - setText MainController.java
+2017-04-19 20:38:25.155 [JavaFX Application Thread]INFO main.MainController - Start OpenFolder
+2017-04-19 20:38:25.156 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:38:34.676 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:38:43.132 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:39:14.425 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:39:20.616 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:39:32.472 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 20:59:47.588 [main]INFO main.Main - lancher start
+2017-04-19 21:00:11.785 [main]INFO main.Main - lancher start
+2017-04-19 21:01:20.245 [main]INFO main.Main - lancher start
+2017-04-19 21:02:17.854 [main]INFO main.Main - lancher start
+2017-04-19 21:02:51.503 [main]INFO main.Main - lancher start
+2017-04-19 21:03:09.186 [main]INFO main.Main - lancher start
+2017-04-19 21:04:18.702 [main]INFO main.Main - lancher start
+2017-04-19 21:04:21.585 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:04:28.385 [JavaFX Application Thread]INFO window.main.MainWindowController - Start OpenFolder
+2017-04-19 21:04:28.386 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:04:45.575 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:16:55.378 [main]ERRORmain.Main - java.lang.RuntimeException: Exception in Application init method
+2017-04-19 21:38:42.871 [JavaFX Application Thread]INFO window.main.VerifyApplication - Application Start
+2017-04-19 21:38:51.893 [JavaFX Application Thread]INFO window.main.VerifyApplication - Application Start
+2017-04-19 21:38:58.857 [JavaFX Application Thread]INFO window.main.MainWindowController - Start OpenFolder
+2017-04-19 21:38:58.858 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:39:21.167 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:39:24.283 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:45:47.516 [JavaFX Application Thread]INFO window.main.VerifyApplication - Application Start
+2017-04-19 21:45:49.681 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:45:55.086 [JavaFX Application Thread]INFO window.main.MainWindowController - Start OpenFolder
+2017-04-19 21:45:55.086 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:46:01.728 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-19 21:46:01.728 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.ClassNotFoundException: main.Window
+2017-04-19 21:46:08.147 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - ERROR:
+2017-04-19 21:46:08.147 [JavaFX Application Thread]ERRORwindow.alertWindow.alertWindowController - java.lang.ClassNotFoundException: main.Window
+2017-04-19 21:46:27.959 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:46:31.465 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:46:56.252 [JavaFX Application Thread]INFO window.textarea.TextAreaInputer - setText OsChecker.class
+2017-04-19 21:47:08.446 [JavaFX Application Thread]INFO window.textarea.TextAreaInputer - setText ClassPathLoader.class
+2017-04-19 21:47:27.049 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:47:36.272 [JavaFX Application Thread]INFO window.main.MainWindowController - Start OpenFile
+2017-04-19 21:47:36.273 [JavaFX Application Thread]INFO window.textarea.TextAreaInputer - setText SampleLog4J.java
+2017-04-19 21:47:48.211 [JavaFX Application Thread]INFO window.main.MainWindowController - Start OpenFile
+2017-04-19 21:47:48.212 [JavaFX Application Thread]INFO window.textarea.TextAreaInputer - setText SampleSAXHandler.java
+2017-04-19 21:47:51.642 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window
+2017-04-19 21:47:54.759 [JavaFX Application Thread]INFO window.load.LoadWindow - loadDialog Window

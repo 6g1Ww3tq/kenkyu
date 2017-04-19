@@ -1,4 +1,4 @@
-package format;
+package window.format;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import main.MainController;
+import window.main.MainWindowController;
 
 public class FormatController implements Initializable{
 
@@ -29,7 +29,7 @@ public class FormatController implements Initializable{
 		Stage stage = (Stage) okButton.getScene().getWindow();
 		stage.close();
 		String format = menuButton.getText();
-		MainController.setFolderFormat(format);
+		MainWindowController.setFolderFormat(format);
 	}
 
 	@Override

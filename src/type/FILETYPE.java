@@ -1,5 +1,5 @@
 package type;
 
-public enum SETTYPE {
+public enum FILETYPE {
 	FILE,FOLDER;
 }

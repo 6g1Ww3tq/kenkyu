@@ -1,4 +1,4 @@
-package textarea;
+package window.textarea;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import javafx.scene.control.TextArea;
-import type.SETTYPE;
+import type.FILETYPE;
 
 public class TextAreaInputer {
 	private  final int READ_ERROR = -1;
@@ -21,12 +21,12 @@ public class TextAreaInputer {
 		this.ta = ta;
 	}
 
-	public void setText(File file,SETTYPE type) {
+	public void setText(File file,FILETYPE type) {
 		FileReader fr = null;
 		StringBuilder sb = new StringBuilder();
 		int data = READ_ERROR;
 		try {
-			if (type == SETTYPE.FILE) {
+			if (type == FILETYPE.FILE) {
 				fr = new FileReader(file);
 				logger.info("setText " + file.getName());
 			}

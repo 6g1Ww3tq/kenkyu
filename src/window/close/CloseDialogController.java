@@ -1,4 +1,4 @@
-package close;
+package window.close;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
