@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import type.FileFormatMap;
 import window.main.MainWindowController;
 
 public class FormatController implements Initializable{
@@ -26,10 +27,12 @@ public class FormatController implements Initializable{
 
 	@FXML
 	void doOK(ActionEvent event) {
+		String format;
+		FileFormatMap ffm = new FileFormatMap();
 		Stage stage = (Stage) okButton.getScene().getWindow();
+		format = menuButton.getText();
+		MainWindowController.setFolderFormat(ffm.getKey(format));
 		stage.close();
-		String format = menuButton.getText();
-		MainWindowController.setFolderFormat(format);
 	}
 
 	@Override

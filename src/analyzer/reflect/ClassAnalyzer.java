@@ -4,11 +4,11 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class Analyzer {
+public class ClassAnalyzer {
 	Class<?> clazz;
 	StringBuilder sb;
 
-	public Analyzer(Class<?> clazz) {
+	public ClassAnalyzer(Class<?> clazz) {
 		this.clazz = clazz;
 		this.sb = new StringBuilder();
 	}
@@ -18,7 +18,7 @@ public class Analyzer {
 		return sb.toString();
 	}
 
-	public void doAnalyze() {
+	public void process() {
 		Field fields[] = clazz.getDeclaredFields();
 		Constructor<?> constructers[] = clazz.getDeclaredConstructors();
 		Method methods[] = clazz.getDeclaredMethods();

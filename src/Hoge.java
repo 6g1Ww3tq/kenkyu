@@ -5,6 +5,7 @@ public class Hoge {
 	private String value;
 	private Foo foo;
 
+	//ゲットします
 	public int getId() {
 		return id;
 	}

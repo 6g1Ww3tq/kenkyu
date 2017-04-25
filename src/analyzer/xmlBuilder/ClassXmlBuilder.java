@@ -21,13 +21,13 @@ import org.w3c.dom.Element;
 
 import analyzer.reflect.ModifierBuilder;
 
-public class XMLBuilder {
+public class ClassXmlBuilder {
 	Class<?> clazz;
 	StringBuilder sb;
 	Document document;
 	Element root;
 
-	public XMLBuilder(Class<?> clazz) throws ParserConfigurationException {
+	public ClassXmlBuilder(Class<?> clazz) throws ParserConfigurationException {
 		this.clazz = clazz;
 		this.sb = new StringBuilder();
 		docInit();
@@ -41,7 +41,7 @@ public class XMLBuilder {
 		document.appendChild(root);
 	}
 
-	public void doXMLBuilder() throws TransformerException, IOException{
+	public void build() throws TransformerException, IOException{
 		TransformerFactory tFactory = TransformerFactory.newInstance();
 		Transformer transformer = tFactory.newTransformer();
 		StringWriter sw = new StringWriter();

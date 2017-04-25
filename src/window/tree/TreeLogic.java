@@ -2,21 +2,18 @@ package window.tree;
 
 import java.io.File;
 
-//import javafx.scene.input.MouseEvent;
+import type.FILEFORMAT;
 import type.FILETYPE;
+import type.FileFormatMap;
 
 public class TreeLogic {
 	private TreeItemString root;
 	private String regex;
 
-	public TreeLogic(String format) {
+	public TreeLogic(FILEFORMAT format) {
+		FileFormatMap ffm = new FileFormatMap();
 		root = new TreeItemString("Root",FILETYPE.FOLDER);
-		if (format.equals("*")) {
-			format = ".*";
-		}else{
-			format = ".*" + format;
-		}
-		this.regex = format;
+		regex = ffm.getFormat(format);
 	}
 
 	public TreeItemString makeTree(TreeItemString rootNode,File currentFile){

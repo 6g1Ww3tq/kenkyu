@@ -7,12 +7,13 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import window.text.textField.AutoCompleteTextField?>
 
 <BorderPane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7777;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="window.main.MainWindowController">
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="statuText" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="statusText" strokeType="OUTSIDE" strokeWidth="0.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -53,7 +54,7 @@
             </MenuBar>
             <HBox spacing="10.0">
                <children>
-                  <TextField fx:id="searchField" onMouseClicked="#doActivePane" promptText="analyze class" />
+                  <AutoCompleteTextField fx:id="searchField" onMouseClicked="#doActivePane" promptText="analyze class" />
                   <Region HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#doAnalyze" onMouseClicked="#doActivePane" text="Analyze">
                      <HBox.margin>
